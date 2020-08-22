@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<style>
+		.active{
+			color: red;
+		}
+	</style>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(item,index) in movies" :class="{active:num==index}" @click="wordChangeColor(index)">{{item}}</li>
+			</ul>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					movies:["误杀","见龙卸甲","黑猫警长"],
+					num:0//用来记录当前索引值，然后传递不同索引值进行对比切换
+				},
+				methods:{
+					wordChangeColor(index){
+						this.num=index;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

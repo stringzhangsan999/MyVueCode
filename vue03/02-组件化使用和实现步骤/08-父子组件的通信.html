@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 这里我们用vue实例来作为父组件，真实的父子组件同信的操作是相同的 -->
+		<!-- 在组件中，使用选项props来声明需要从父级接收到的数据。
+					props的值有两种方式：
+					方式一：字符串数组，数组中的字符串就是传递时的名称。
+					方式二：对象，对象可以设置传递时的类型，也可以设置默认值等。 -->	
+		<div id="app">
+		
+		<!-- 	<cpn v-bind:message='message' v-bind:cmovies='cmovies'></cpn> -->
+			<cpn  :cmovies='movies'></cpn>
+		</div>
+		<template id="cpn">
+			<div>
+			<h3>显示信息:{{message}}</h3>
+			<ul>
+				<li v-for="item in cmovies">{{item}}</li>
+			</ul>
+			</div>
+		</template>
+		<script src="../js/vue.js"></script>
+		<script>
+			const cpn ={
+						template:"#cpn",
+					//	props:['message','cmovies']  
+					/* 对象类型的写法不仅可以传递数据还可以指定类型 */
+					props:{
+						/* 1.类型的限制
+						message:String,
+						cmovies:Array */
+						//2.可以设置数据的更多的属性  default当父组件不传任何值的时候可以拥有自己的默认值  require 可以指定这个数据是不是必须传递数据的
+						message:{
+						   type:String,
+							 default:'你好啊!',
+							 require: true
+						 },
+						 /* 当默认值为数组和对象时需要将默认值写成函数的形式返回指定类型(视频中老师说的)*/
+						 cmovies:{
+							  type:Array,
+							   default(){
+									 return [];
+								},
+								require: true
+						 }
+						}
+					}
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					movies:['海王','海贼王','海尔兄弟']
+				},
+				components:{
+					cpn/* Es6对象的增强写法 */
+				}
+			})
+		</script>
+	</body>
+</html>

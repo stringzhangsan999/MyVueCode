@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 父组件如果想要得到主键的实例有两种方式:1.$children 2.$refs
+		
+		$children可以得到本组件下所有的子组件也就是子组件数组：使用方式只需要在父组件中this.$children即可得到所有子组件
+		
+		$refs可以通过ref唯一标识一个组件名称 也就是 $refs.ref值 得到指定key的组件实例
+		-->
+		<div id="app">
+			<cpn ref="c1"></cpn>
+			<cpn2 ref="c2"></cpn2>
+			
+			<button @click="btnClick">得到子组件name</button>
+		</div>
+		<template id="cpn">
+			<div>
+				<h3>我是组件一</h3>
+			</div>
+		</template>
+		<template id="cpn2">
+			<div>
+				<h3>我是组件二</h3>
+			</div>
+		</template>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!"
+				},
+				components:{
+					cpn:{
+						template:"#cpn",
+						data(){
+							return {
+								name: "组件一的name"
+								}
+						}
+					},
+					cpn2:{
+						template:"#cpn2",
+						data(){
+							return { name:"组件二的name"}
+							}
+					}
+				},
+				methods:{
+					btnClick(){
+						
+					/* 通过$children方式不够灵活且耦合性太高 当我们在其中加入另外的组件那么组件顺序乱
+					了那么得到的对象就不一样了，不能指哪打哪
+						for(let children of this.$children)
+						console.log(children.name); */
+						/* ref标识主键 通过this.$refs.ref的值来调用  可以明确得到某一个组件
+						 */
+						
+						
+						console.log(this.$refs.c1.name);
+						console.log(this.$refs.c2.name);
+						
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>演示高阶函数</title>
+	</head>
+	<body>
+	</body>
+	<script type="application/x-javascript">
+		/* 需求:想要将将小于100的数值给筛选出来然后乘以2再计算总和 
+		按照以前的做法就是用循环遍历传来，现在使用高阶函数 filter ,map,reduce
+		*/
+     var nums=[10,20,100,200,256,40,50];
+
+		 
+		 /* filter(回调函数(数组的元素)) 数组中 有多少个元素就会回调多少次回调函数，回调函数的需要给一个返回值这个返回值是处理后的数组值*/
+		 /* [10, 20, 40, 50] 会将数据重新创建一个新数组装起来 *//* n代表数组元素 */
+		/* let newArray=nums.filter(function(n){
+				return n<100;
+		}) */
+		/* map看似和filter有点像但是会发现filter能过滤数据，但是map只能处理数据  */
+		/*  [20, 40, 200, 400, 512, 80, 100] 会将数据重新创建一个新数组装起来 *//* n代表数组元素 */
+		/* let newArray=nums.map(function(n){
+				return n*2;
+		}) */
+		/* reduce(回调函数(初始值,当前数组遍历的值),对应传递的回调函数的初始值)  reduce可以进行一个垒叠的计算 适用于统计数据*/
+/* 		let newArray=nums.reduce(function(previousValue,currentValue){
+				return previousValue+currentValue;
+		},0) */
+		 
+		/* 	 let newArray=nums.filter(function(n){
+		 			 return n<100;
+		 		 }).map(function(n){
+		 			 return n*2
+		 		 }).reduce(function(previousValue,currentValue){
+		 			 return previousValue+currentValue;
+		 		 }, 0)//初始值为零 */
+		 
+		 /* 使用箭头函数的简化写法 见后续的讲解*/
+		 
+	let newArray = nums.filter(n=> n<100).map(n=> n*2).reduce((preValue,currentValue)=>preValue+currentValue,0);
+		 
+		 console.log(newArray);
+	</script>
+</html>

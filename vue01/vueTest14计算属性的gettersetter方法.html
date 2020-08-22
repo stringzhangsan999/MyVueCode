@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">{{finalName}}</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					firstName:"张",
+					lastName:"一山"
+				},
+				computed:{
+					finalName:{
+						/* 一般不写set方法,set方法中带有一个参数为修改值的参数 param */
+						set:function(newValue){
+							let arr = newValue.split(" ");
+							this.firstName=arr[0];
+							this.lastName=arr[1];
+						},
+						/* 因为一般只写get方法所以干脆就出现了演化版 */
+						get:function(){
+							return this.firstName+" "+this.lastName;
+						}
+					},
+					/* 演化版，所以这个finalName是属性而不是方法 */
+					finalName:function(){
+						return this.firstName+" "+this.lastName;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

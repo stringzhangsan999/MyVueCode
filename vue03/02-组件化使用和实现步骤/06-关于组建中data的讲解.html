@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 组件是一个单独功能模块的封装：		这个模块有属于自己的HTML模板，也应该有属性自己的数据data。		组件中的数据是保存在哪里呢？顶层的Vue实例中吗？		我们先来测试一下，组件中能不能直接访问Vue实例中的data		 -->
+		 
+		 <!-- {{message}}测试发现访问不了 结论：Vue组件应该有自己保存数据的地方。-->
+		 
+		 <!-- 组件自己的数据存放在哪里呢?				组件对象也有一个data属性(也可以有methods等属性，下面我们有用到)				只是这个data属性必须是一个函数				而且这个函数返回一个对象，对象内部保存着数据				-->
+		 <template id="cpn1">
+		 <div><!-- 千万注意在template中只能有一个根节点所以一般在最外层套一个div -->
+			 <h3>测试能不能访问vue实例中的data</h3>
+			 {{title}}
+			</div>
+		 </template>
+		<div id="app">
+			<cpn1></cpn1>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!"
+				},
+				components:{
+					cpn1:{
+						template:'#cpn1',
+						data(){/* 组件中的data必须是一个函数函数中返回的数据是一个对象，对象内部保存数据 */
+							return { title:'我是标题'}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

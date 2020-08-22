@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 为什么data在组件中必须是一个函数呢?			首先，如果不是一个函数，Vue直接就会报错。(所以这个是规定)			其次，原因是在于Vue让每个组件对象都返回一个新的对象，因为如果是同一个对象的，组件在多次使用后会相互影响。
+			(如果返回是同一个对象那么将会相互影响接下来演示相互影响的效果) -->
+		
+		<template id="cpn1">
+			<div>
+				<h3>当前数字为:{{count}}</h3>
+				<button @click="increment">+</button>
+				<button @click="decrement">-</button>
+			</div>
+		</template>
+		<div id="app">
+			<cpn1></cpn1>
+			<cpn1></cpn1>
+			<cpn1></cpn1>
+			<cpn1></cpn1>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			let obj={count:0}
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!"
+				},
+				components:{
+					cpn1:{
+						template:'#cpn1',
+						data(){
+							return obj;/* {count:0}这样每次返回的是一个新的对象 如果是返回一个新的对象那么这个操作不会相互影响 */
+						},
+						methods:{
+							increment(){
+								this.count++;
+							},
+							decrement(){
+								this.count--;
+							}
+							
+						}
+					},
+					
+				}
+			})
+		</script>
+	</body>
+</html>

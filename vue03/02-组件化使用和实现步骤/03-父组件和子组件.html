@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 父子组件 -->
+		<div id="app">
+		<parent></parent>	
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			/* 创建父子组件 */
+			//2.创建子组件构造器
+			const childComponent=Vue.extend({
+				template:`
+				<div>
+				<h3>我是子组件哈哈哈哈哈哈哈哈哈哈或或</h3>
+				</div>
+				`
+			});
+			
+			//1.创建父组件构造器
+			const parentComponent=Vue.extend({
+				template:`
+				<div>
+				<h3>我是父组件哈哈哈哈哈哈哈哈哈哈或或</h3>
+				<child></child>
+				</div>`,
+				components:{
+					child:childComponent
+				}
+				
+			});
+
+			//3.注册父组件
+			Vue.component('parent',parentComponent);
+			
+			
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!"
+				}
+			})
+		</script>
+	</body>
+</html>

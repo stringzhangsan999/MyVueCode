@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+	    <div id="app">
+				<div>{{url}}</div>
+	    	<div  v-html="url"></div>
+		    <div  v-text="message">会覆盖标签体内容</div>
+		    <div  v-pre>{{message}}</div>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					url:"<a href='http://www.baidu.com'>百度一下</a>"
+				}
+			})
+		</script>
+	</body>
+</html>

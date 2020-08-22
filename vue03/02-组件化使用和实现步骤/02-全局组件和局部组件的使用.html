@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 所谓全局组件就是在所有的vue应用中都可以使用的组件和全局变量是一个意思
+				 而所谓局部组件就是只能在当前注册组件的vue应用中使用和局部变量是一个意思
+		 -->
+		<div id="app1">
+			<cpn1></cpn1>
+			<!-- <cpn2></cpn2> 这个是局部组件不能使用 -->
+		</div>
+		
+		<div id="app2">
+			<cpn1></cpn1>
+			<cpn2></cpn2>
+			</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			/* 全局组件 ：当我们注册在外面而不是某一个vue应用中时此时的组件就是全局组件 , 全局组件可以在任何一个vue应用中使用*/
+			//1.创建组件构造器
+			const myComponent1=Vue.extend({
+				template:`
+				<div>
+				<h3>我是标题一哈哈哈哈哈哈哈哈哈哈或或</h3>
+				</div>
+				`
+			});
+			//2.注册组件
+			Vue.component('cpn1',myComponent1);
+			
+			
+			/* 局部组件：我们将组件构造器挂载到具体的vue实例中就是局部组件而且只能那个vue实例可以用 */
+			const myComponent2=Vue.extend({
+				template:`
+				<div>
+				<h3>我是标题二哈哈哈哈哈哈哈哈哈哈或或</h3>
+				</div>
+				`
+			});
+			const app1 = new Vue({
+				el:"#app1",
+				data:{
+					message:"Hello World!"
+				}
+			});
+			const app2= new Vue({
+				el:"#app2",
+				data:{
+					message:"Hello World!"
+				},
+				components:{
+					cpn2:myComponent2
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- vue使用虚拟dom将dom加载进一个内存然后进行标签比对如果标签一样会进行一个复用
+		，然后将不一样的地方进行替换，所以这里在输入框这个地方没有清空，关于虚拟dom后面会详细讲解 -->
+		<!-- 如果我们想要它不进行一个复用那么我们需要使用属性keyl来区别两个标签 key不一样那么虚拟dom将不会复用标签 -->
+		<div id="app">
+			<div> <a  @click="isUser=true" >用户登录</a> | <a @click="isUser=false">邮箱登录</a></div>
+			<div v-if="isUser">
+				<label for="username">用户名登录:</label>
+				<input id="username" type="text" placeholder="请输入用户名" key='username'/>
+			</div>
+			<div v-else>
+					<label for="email">邮箱登录:</label>
+					<input id="email" type="text" placeholder="邮箱用户名" key='email'/>
+				</div>
+		</div>
+	
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+						isUser:true
+				}
+			
+			})
+		</script>
+	</body>
+</html>

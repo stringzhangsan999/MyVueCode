@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>当前数字为：{{counter}}</h2>
+		<!--正常表达式写法
+			<button v-on:click="counter++">+</button>
+				<button v-on:click="counter--">-</button> -->
+		<!-- 正常函数式写法 没有参数就不需要小括号
+			<button v-on:click="increment()">+</button>
+				<button v-on:click="substract()">-</button>
+			<button v-on:click="increment">+</button>
+				<button v-on:click="substract">-</button> -->
+				<!--语法糖表达式写法
+					<button @click="counter++">+</button>
+						<button @click="counter--">-</button> -->
+						<!-- 语法糖函数式写法没有参数就不需要小括号
+							<button @click="increment()">+</button>
+								<button @click="substract()">-</button> -->
+							<button @click="increment">+</button>
+								<button @click="substract">-</button>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					counter:0
+				},
+				methods:{
+					/* 增强写法以前是 increment：function（）{} */
+					increment(){
+						this.counter++;
+				},
+				substract(){
+					this.counter--;
+				}
+				}
+			})
+		</script>
+	</body>
+</html>

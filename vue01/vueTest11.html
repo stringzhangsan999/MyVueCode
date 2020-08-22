@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+		
+		<h2 :style="[baseStyle,baseStyle1]">{{message}}</h2>
+		
+		
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					baseStyle:{fontSize:'100px',background:'red'},
+					/* 后面的会覆盖前面的 */
+					baseStyle1:{fontSize:'50px',background:'purple'}
+				}
+			})
+		</script>
+	</body>
+</html>

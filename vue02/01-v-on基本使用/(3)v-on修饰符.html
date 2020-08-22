@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<div @click="divClick()">
+				aaaa
+				<!-- 如果不加修饰符stop  那么点击按钮1时会触发divClick()事件 -->
+				<button @click.stop="btnClick()">按钮1</button>
+				<form action="baidu">
+					<!-- 如果不添加修改时prevent那么会默认执行表单提交 如果再添加stop还可以将事件冒泡也给阻止掉-->
+				<!-- 	<input type="submit" value="点击表单提交按钮" @click.prevent="formBtn()" /> -->
+					<input type="submit" value="点击表单提交按钮" @click.prevent.stop="formBtn()" />
+				</form>
+	
+			</div>
+			<!-- 监听所有的键盘抬起
+				<button @keyup="enterUp()">键盘抬起触发</button> -->
+				<!-- 使用别名修饰符enter，只监听enter键 -->
+				<input @keyup.enter="enterUp()" type="text"><br />
+				<button @click.once="onceClick">点击只能执行一次</button>
+			
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				methods:{
+					// divClick：function(){}   ===> divClick(){}
+					divClick(){
+						console.log('divClick');
+					},
+					btnClick(){
+						console.log('btnClick');
+					},
+					formBtn(){
+								console.log('formBtn');
+					},
+					enterUp(){
+							console.log('enterUp');
+					},
+					onceClick(){
+							console.log('onceClick');
+					}
+					
+		
+						
+				}
+			})
+		</script>
+	</body>
+</html>

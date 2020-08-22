@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 组件模板分离写法:
+		刚才，我们通过语法糖简化了Vue组件的注册过程，另外还有一个地方的写法比较麻烦，就是template模块写法。			如果我们能将其中的HTML分离出来写，然后挂载到对应的组件上，必然结构会变得非常清晰。			Vue提供了两种方案来定义HTML模块内容：			使用<script>标签			使用<template>标签			 -->
+		<!-- 方式一使用script标签  注意：模板中只能有一个根节点一般在最外层套一个div-->	 
+			<script type="text/x-handlebars-template" id="cpn1">
+			<div>
+				<h3>我是标题一哈哈哈哈哈哈哈哈哈哈或或或</h3>
+			</div>
+			</script>
+			<!-- 方式二使用template标签  注意：模板中只能有一个根节点一般在最外层套一个div-->
+			<template id="cpn2">
+				<div>
+					<h3>我是标题二大叔大婶大所大大所大所多</h3>
+				</div>
+				
+			</template>
+		<div id="app">
+			<cpn1></cpn1>
+		</div>
+		<div id="app2">
+			<cpn2></cpn2>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			/*全局组件
+			 Vue.component('cpn1',{template:'#cpn1'}) */
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!"
+				},
+				components:{
+					cpn1:{/* 局部组件 */
+						template:"#cpn1"
+					}
+				}
+			})
+			
+			const app2 = new Vue({
+				el:"#app2",
+				data:{
+					message:"Hello World!"
+				},
+				components:{
+					cpn2:{/* 局部组件 */
+						template:"#cpn2"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

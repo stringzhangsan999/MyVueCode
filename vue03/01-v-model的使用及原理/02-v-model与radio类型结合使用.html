@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 原来的写法就是将name名称取的一样形成一个互斥的结果（name一样表单提交的时候只能提交一个） -->
+<!-- 			<label for="male"><input type="radio"  name="gender" id="male" value="男" />男</label>
+			<label for="female"><input type="radio" name="gender" id="female" value="女"/>女</label> -->
+			<!-- 使用v-model我们需要绑定一个数据gender，还需要指定radio的值，因为值是必须要填的，会提交给后面的 -->
+			<label for="male"><input type="radio" v-model="gender"  value="男" id="male" />男</label>
+			<label for="female"><input type="radio" v-model="gender" value="女"  id="female" />女</label>
+		<h3>你选择的性别是:{{gender}}</h3>
+		</div>
+	
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+				gender:'男',/* 相当于指定了radio的默认值 */
+				}
+			})
+		</script>
+	</body>
+</html>

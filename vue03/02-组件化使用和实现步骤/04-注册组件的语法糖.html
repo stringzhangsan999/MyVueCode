@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			
+			<cpn1></cpn1>
+			<!-- <cpn2></cpn2> 局部组件访问不了 -->
+		</div>
+		<div id="app2">
+			<cpn2></cpn2>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			/* 在上面注册组件的方式，可能会有些繁琐。					Vue为了简化这个过程，提供了注册的语法糖。					主要是省去了调用Vue.extend()的步骤，而是可以直接使用一个对象来代替。			*/
+		//注册全局组件的语法糖
+		Vue.component("cpn1",{
+			template:`<div>
+			<h3>注册全局组件的语法糖哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈或或或</h3>
+			</div>`
+		})
+		
+		 
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!"
+				}
+			});
+			const app2 = new Vue({
+				el:"#app2",
+				data:{
+					message:"Hello World!"
+				},
+				components:{
+					cpn2:{
+					 template:`<div>
+						<h3>注册局部组件的语法糖实打实大所大所大所多撒</h3>
+						</div>`
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

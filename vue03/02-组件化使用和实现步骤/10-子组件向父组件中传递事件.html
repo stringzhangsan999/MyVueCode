@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 以前都是浏览器默认的事件而这里是我们从子组件发射出来的事件，
+			而且这里不能使用大写也就是不支持驼峰命名，经过测试发现'-'也不起作用 
+			我们在方法中传递我们想要传递的数据完成子传父
+			-->
+			<ccpn @itemclick='cpnClick'></ccpn>
+		</div>
+
+		<template id="ccpn">
+			<div>
+				<button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+			</div>
+		</template>
+		<script src="../js/vue.js"></script>
+		<script>
+			const ccpn={
+				template:'#ccpn',
+				data(){
+					return { 
+						categories: [
+						{id:01,name:"生活用品"},
+						{id:02,name:"医疗专区"},
+						{id:03,name:"学习用品"},
+						{id:04,name:"数码专区"}
+					],
+					};
+				},
+				methods:{
+					btnClick(item){
+						this.$emit("itemclick",item);
+					}
+				}
+			}
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					categories:[]		
+				},
+				components:{
+					ccpn
+					},
+					methods:{
+						cpnClick(item){
+							console.log(item);
+						}
+					}
+			})
+		</script>
+	</body>
+</html>

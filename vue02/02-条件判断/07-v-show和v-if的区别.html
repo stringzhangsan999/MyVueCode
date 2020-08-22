@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- v-if当isShow为false时整个标签直接不创建和加载，当isShow为true在创建  -->
+		<h1 v-if="isShow">{{message}}</h1>
+		<!-- v-show时当isShow为false渲染的代码如下：添加了一个行内样式使其不显示
+		 <h1 style="display: none;">Hello World!</h1>
+		 -->
+		<h1 v-show="isShow">{{message}}</h1>
+		<!-- 总结：当频繁切换显示和隐藏时应该使用v-show这样性能会高一点，否则使用v-if -->
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					isShow:true
+				}
+			})
+		</script>
+	</body>
+</html>

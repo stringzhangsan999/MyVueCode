@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 作用域插槽的使用解释：
+		 父组件只能访问自己的data,子组件只能访问自己的data 
+		 各自有各自的作用域，此时我们想要将子组件中的数据给父组件使用通过使用作用域插槽将数据传递过去
+			选取其中相同的数据改变组件中的不同样式，使用template标签中的slot-scope属性值为自定义的
+			相当于是插槽对象 子组件的插槽可以访问到子组件的数据
+			
+			我们需要在子组件的插槽中绑定 自定义属性 并且绑定子组件的 数据
+			
+			join函数操作数据中使用什么分隔
+		 -->
+		<div id="app">
+			<cpn>
+				<template slot-scope="slot">
+					<ul>
+						<li v-for="item in slot.abc">{{item}}</li>
+					</ul>
+				</template>
+			</cpn>
+			<cpn>
+				<template slot-scope="slot">
+					
+						<!-- <span v-for="item in slot.abc">{{item}}- </span> -->
+						<span>{{slot.abc.join("-")}}</span>
+				
+				</template>
+			</cpn>
+			<cpn>
+				<!--自定义属性名称 -->
+				<template slot-scope="slot">
+					
+						<!-- <span v-for="item in slot.abc">{{item}}- </span> -->
+						<span>{{slot.abc.join("*")}}</span>
+				
+				</template>
+			</cpn>
+	
+		</div>
+		<template id="cpn">
+			<div>
+				<!-- v-bind 自定义属性名称 -->
+				<slot :abc="PLanguage">
+					<ul>
+						<li v-for="item in PLanguage">{{item}}</li>
+					</ul>
+				</slot>
+			</div>
+		</template>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!"
+				},
+				components:{
+					cpn:{
+						template:"#cpn",
+						data(){
+							return {
+								PLanguage:['java','c++','pthyon','nodejs','javascript']
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

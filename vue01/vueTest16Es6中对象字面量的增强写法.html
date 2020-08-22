@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ES6对象字面量的增强写法</title>
+	</head>
+	<body>
+		<script>
+			let name="张三";
+			let age="18";
+			let gender="男";
+			// 以前对象字面量的写法    {}===>对象的字面量的写法
+			var obj = {name:name,age:age,gender:gender}
+			console.log(obj);
+			//ES6增强写法  默认将 name作为key  name变量作为作为value....
+			var obj2={name,age,gender}
+			console.log(obj2);
+		</script>
+	</body>
+</html>

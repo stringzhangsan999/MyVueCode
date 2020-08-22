@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<div> <a  @click="isUser=true" >用户登录</a> | <a @click="isUser=false">邮箱登录</a></div>
+			<div v-if="isUser">
+				<label for="username">用户名登录:</label>
+				<input id="username" type="text" placeholder="请输入用户名"/>
+			</div>
+			<div v-else>
+					<label for="email">邮箱登录:</label>
+					<input id="email" type="text" placeholder="邮箱用户名"/>
+				</div>
+		</div>
+	
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+						isUser:true
+				}
+			
+			})
+		</script>
+	</body>
+</html>

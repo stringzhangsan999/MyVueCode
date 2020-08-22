@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 因为Vue是响应式的，所以当数据发生变化时，Vue会自动检测数据变化，视图会发生对应的更新。     Vue中包含了一组观察数组编译的方法，使用它们改变数组也会触发视图的更新
+ 
+     但是不是所有的操作都是响应式的接下介绍是vue响应式方法：							 
+								push()								pop()								shift()								unshift()								splice()								sort()								reverse()
+								-->
+		<div id="app">
+			<ul>
+				<li v-for="i in array">{{i}}</li>
+			</ul>
+			<button @click="someMethod()">执行方法</button>
+			
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					array:['a','b','d','f','e'],
+					firstNames:['张','刘','李','赵','王']
+				},
+				methods:{
+					someMethod(){
+						<!--直接修改数组元素虽然可以修改但是不会响应刷新到页面-->
+					/* 	this.array[0]='张三'; 发现页面并没有响应但是console里面打印时发现数据已经改了*/
+					/* 在尾部添加 
+					this.array.push("李四");*/
+					
+					/* 在尾部弹出，也就是删除
+					this.array.pop(); */
+					
+					/* 在头部添加 
+					this.array.unshift("李四");*/
+					
+					/* 头部弹出，也就是头部删除 
+					this.array.shift();*/
+					
+					/* splice拼接数组 splice() 方法可用于向数组添加新项：
+					第一个参数（2）定义了应添加新元素的位置（拼接）。第二个参数（0）定义应删除多少元素。其余参数（“Lemon”，“Kiwi”）定义要添加的新元素。 
+					可以模拟 添加 删除 替换
+					*/
+					/* this.array.splice(0,0,1,2,3) 头部添加1,2,3*/
+				/* 	this.array.splice(this.array.length-1,0,123456)尾部添加123456 */
+				/* this.array.splice(0,1,1)
+				this.array.splice(this.array.length-1,1,1) 替换 */
+				
+				/* 	this.array.splice(0,1) 
+					this.array.splice(this.array.length-1,1)删除*/
+					
+					
+				/* 	this.array.reverse();数组元素翻反转 */
+					
+				/* 	this.array.sort();数组排序 */
+					
+				/* 	Vue.set(this.array,5,'张三')通过Vue的方式 设置数组的值 */
+						console.log(this.array);
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

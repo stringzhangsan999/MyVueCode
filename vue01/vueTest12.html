@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+	<p>	{{firstName+' '+lastName}}</p>
+	<p>	{{firstName}} {{lastName}}</p>
+	<p>	{{finalName}}</p>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				/* 属性计算 不能加小括号 */
+				computed:{
+					finalName:function(){
+						return this.firstName+' '+this.lastName
+					}
+				},
+				data:{
+					firstName:"张",
+					lastName:"一山"
+				}
+			})
+		</script>
+	</body>
+</html>

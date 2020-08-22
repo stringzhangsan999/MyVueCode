@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			
+			<ccpn :number1="num1" :number2="num2" @iptChange1="iptchange1"  @iptChange2="iptchange2"></ccpn>
+		</div>
+		<template id="ccpn">
+			<div>
+				<!-- 需求:当我们修改输入框数据时我们想要修改父组件（也就是vue实例）里面data的值
+				并且无论第一个值怎么修改都是第二个字的 1/100 无论第一个值怎么修改第二个值都是第一个值的100倍
+				 
+				方式1(错误方式 直接v-model父组件传来的值):我们直接绑定props里面的数据修改时动态绑定修改props里面的值，
+				但是这种方式是存在风险的官方也不支持我们以前动态绑定的都是绑定data，这里相当于是绑定了父组件传来的值这种方式不能修改父组件的data
+			
+			<h3>{{number1}}</h3>
+			<input type="text" v-model="number1"/><br />
+			<h3>{{number2}}</h3>
+			<input type="text" v-model="number2"/><br />
+			
+			方式二:我们在方式一基础上修改，不直接绑定props中的数据，而且使用v-bind:value ="xxx" +  @input="函数的方式（我们可以在函数中向父组件发射自定义事件，也可以进行一些其他操作）" 
+			
+				-->
+		<h3>props:{{number1}}</h3>
+		<h3>tdata:{{dnumber1}}</h3>
+		<input type="text" v-bind:value="dnumber1" @input="inputchange1($event)" /><br /><!-- 浏览器对象想要手动传递使用 $event -->
+		<h3>props:{{number2}}</h3>
+		<h3>tdata:{{dnumber2}}</h3>
+		<input type="text" v-bind:value="dnumber2" @input="inputchange2($event)"/><br />
+		
+			</div>
+		</template>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					num1:1,
+					num2:0
+				},
+				components:{
+					ccpn:{
+						template:'#ccpn',
+						props:{
+							number1:Number,
+							number2:Number
+						},
+						data(){
+							return {
+								dnumber1:this.number1,
+								dnumber2:this.number2
+							};
+						},
+						methods:{
+							inputchange1(event){
+								this.dnumber1=parseFloat(event.target.value);
+								this.dnumber2=this.dnumber1*100;/* 因为我们已经绑定了这个里面的数据所以只要数据发生input发生改变那么就都会改变*/
+								this.$emit("iptchange1",this.dnumber1);/* 向父组件发射自定义事件，数据直接以参数形式发送 不支持驼峰命名 */
+						    this.$emit("iptchange2",this.dnumber2)//同时将父组件的data进行了修改
+							},
+							inputchange2(event){
+								this.dnumber2=parseFloat(event.target.value);
+								this.dnumber1=this.dnumber2/100;  /* 因为我们已经绑定了这个里面的数据所以只要数据发生input发生改变那么就都会改变*/
+								this.$emit("iptchange2",this.dnumber2);
+								this.$emit("iptchange1",this.dnumber1);
+							}
+						}
+						
+					}
+				},
+				methods:{
+					iptchange1(dnumber1){
+						this.num1=dnumber1
+					},
+					iptchange2(dnumber2){
+						this.num2=dnumber2
+					},
+					
+				}
+			
+				
+			})
+		</script>
+	</body>
+</html>

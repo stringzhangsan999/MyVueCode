@@ -1,0 +1,1 @@
+var flag = true ;//全局变量可以跨js文件使用

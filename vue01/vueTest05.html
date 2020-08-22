@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+		
+		<style>
+			[v-cloak]{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 会先盖上一层斗篷当vue解析完成后就去自动去掉这个标签，我们可以通过这个标签来设置不显示的属性 -->
+		<div id="app" v-cloak>{{message}}</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			setTimeout(()=>{
+			
+				const app = new Vue({
+					el:"#app",
+					data:{
+						message:"Hello World!"
+					}
+				})
+			},1000)
+		
+		</script>
+	</body>
+</html>

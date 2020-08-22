@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<style>
+		.active{
+			color: red;
+		}
+	</style>
+	<body>
+		<div id="app">
+		
+<!-- 第一种原始的写法	<h2 class="active">	{{message}}  </h2> -->
+<!-- 第二种绑定类名方式		<h2 :class="active">{{message}}</h2> -->
+<!-- 第三种对象绑定：{类名1:布尔值1，类名2:布尔值2} <h2 :class="{active:isActive,line:isLine}">{{message}}</h2> -->
+<!-- 它会将里面class进行合并而不是覆盖  动态改变字的颜色-->
+<h2  class="title" :class="{active:this.isActive,line:this.isLine}">{{message}}</h2>
+<!-- 也可以写到函数里面返回给我们一个对象 -->
+<h2  class="title" :class="getClasses()">{{message}}</h2>
+<button @click="changeColor">按钮变色</button>
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					active:"active",
+					isActive:true,
+					isLine:true
+				},
+				methods:{
+					changeColor:function(){
+						this.isActive=!this.isActive
+					},
+					getClasses:function(){
+						return {active:this.isActive,line:this.isLine}
+					}
+				}
+				
+				
+			})
+		</script>
+	</body>
+</html>

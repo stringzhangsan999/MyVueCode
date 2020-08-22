@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+		<p>{{finalName}}</p>
+			<p>{{finalName}}</p>
+				<p>{{finalName}}</p>
+					<p>{{finalName}}</p>
+			<!-- 		
+					<p>{{getName()}}</p>
+						<p>{{getName()}}</p>
+							<p>{{getName()}}</p>
+								<p>{{getName()}}</p> -->
+		</div>
+		<script src="./js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					firstName:"张",
+					lastName:"一山"
+				},
+				methods:{
+					getName:function(){
+						/* 查看控制台打印发现这个方法被调用了四次及其浪费性能 */
+						console.log('getName');
+						return this.firstName+""+this.lastName
+					}
+				},
+				/* 总结我们需要改变属性中的内容或者是计算属性的时候，使用计算属性可以提高性能，只有当retrun的内容发生改变时才会再次调用计算属性的方法
+				 app.firstName="刘" 测试一下发现会再次调用计算属性的方法
+				 */
+				computed:{
+					finalName:function(){
+						/* 查看控制台发现只打印了一次说明数据缓存在了变量finalName中 */
+						console.log('finalName'); 
+						return this.firstName+""+this.lastName;
+					}
+				}
+			
+			})
+		</script>
+	</body>
+</html>

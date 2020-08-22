@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<!-- 和checkbox一样，select也分单选和多选两种情况。			单选：只能选中一个值。			v-model绑定的是一个值。			当我们选中option中的一个时，会将它对应的value赋值到mySelect中			 -->
+		<div id="app" >
+			<select v-model="mySelect">
+				<option value="apple">苹果</option>
+				<option value="banana">香蕉</option>
+				<option value="orange">橘子</option>
+			</select>
+			<h3>{{mySelect}}</h3>
+			<div>
+				<!-- 多选：可以选中多个值。					v-model绑定的是一个数组。					当选中多个值时，就会将选中的option对应的value添加到数组mySelects中					 -->
+				<select v-model="mySelects" multiple="true">
+					<option value="apple">苹果</option>
+					<option value="banana">香蕉</option>
+					<option value="orange">橘子</option>
+				</select>
+				<h3>{{mySelects}}</h3>
+				
+			</div>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					mySelect:"banana",
+					mySelects:[]
+				}
+			})
+		</script>
+	</body>
+</html>

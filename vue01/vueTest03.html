@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>mathmatic</title>
+	</head>
+	<script src="./js/vue.js"></script>
+	<body>
+		<div id="num">
+			<div>当前数字:{{counter}}</div>
+			<!-- 第一种方式 
+			<button v-on:click="counter++">+</button>
+			<button v-on:click="counter--">-</button>-->
+			
+			<!-- 第二种方式 increment()  可以加（）也可以不加
+			<button v-on:click="increment()">+</button>
+			<button v-on:click="subtract()">-</button>-->
+			<!-- 第三种方式 语法糖：也就是语法上的甜头，简写版-->
+			<button @click="increment">+</button>
+			<button @click="subtract">-</button>
+		</div>
+	</body>
+	<script>
+		const number=new Vue({
+			el:"#num",
+			data:{counter:0},
+			methods:{
+				increment:function(){
+					this.counter++;
+			},
+			subtract:function(){
+				this.counter--
+			},
+			}
+		})
+		
+	</script>
+</html>

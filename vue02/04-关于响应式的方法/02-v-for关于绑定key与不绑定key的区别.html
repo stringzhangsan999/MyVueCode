@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<!-- v-bind:key 语法糖 ：key  绑定一个key作为唯一标识这样当加载进虚拟dom时能准确的去插入到某一个地方
+				 所以一句话，key的作用主要是为了高效的更新虚拟DOM，
+				 注意:key绑定的东西一定是唯一标识且不变的，所以一般会把遍历的变量的子变量绑定进去
+				 -->
+				<li v-for="name in names" :key="name">{{name}}</li>
+			</ul>
+			<button type="button" @click="btn()" >执行splice方法</button>
+			
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					names:["张三","李四","王五","赵六","周七"]
+				},
+				methods:{
+					btn(){
+						this.names.splice(1,0,"刘文君")
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

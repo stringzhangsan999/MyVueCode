@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 关于目前版本的vue不支持驼峰命名我们必须将大写的字母换成小写并在前面加上-才能正常传递 -->
+			<!-- <cpn :cInfo='info'></cpn> -->
+			<cpn :c-info='info' :child-my-message='childMyMessage'></cpn>
+		</div>
+		
+		<template id="cpn">
+			<div>
+				我的信息:{{cInfo}}<br />
+				{{childMyMessage}}
+			
+			</div>
+		</template>
+		<script src="../js/vue.js"></script>
+		<script>
+			const cpn={
+				template:'#cpn',
+			  props:{
+					cInfo:{
+						type:Object,
+					  default() {
+							return {};
+						}
+					},
+					childMyMessage:{
+						type:String,
+						default:''
+					}
+				}
+			}
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",
+					info:{
+						name:'zwx',
+						age:22,
+						height:180
+					},
+					childMyMessage:"你好"
+				},
+				components:{
+					cpn
+				}
+			})
+		</script>
+	</body>
+</html>

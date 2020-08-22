@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>movies</title>
+<script type="application/javascript" src="./js/vue.js"></script>
+<style>
+	.red{
+		color: #FF0000;
+	}
+</style>
+	</head>
+	<body>
+		<div id="movie">
+		<ul>
+			<li @click="changeColor(index)" :class="index == num ? 'red':'' " v-for="(i,index) in movies">{{index}}-{{i}}</li>
+		</ul>	
+			
+		</div>
+		
+		
+	</body>
+	<script>
+		let a =new Vue({
+			el:"#movie",
+			data:{
+				movies:["阿甘正传","星际争霸","三毛流浪记"],
+				active:"active",
+			  num:-1
+			},
+			methods:{
+				changeColor:function(index){
+					this.num=index;
+				},
+	
+			}
+		})
+		
+	</script>
+</html>

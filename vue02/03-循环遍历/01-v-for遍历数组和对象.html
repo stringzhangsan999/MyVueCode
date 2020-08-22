@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>template</title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<!--格式一：
+				v-for="变量1 in 数组"
+				v-for="(变量1,索引) in 数组" 
+				 -->
+	    	<li v-for="item in movies">{{item}}</li>
+				&nbsp;
+					<li v-for="(item,index) in movies">{{index+1}}.{{item}}</li>
+		</ul>
+		<ul>
+			<!-- 遍历对象时当只有一个变量时那么默认为 value -->
+		  	<li v-for="value in person">{{value}}</li>
+		</ul>
+		<ul>
+			<!-- 遍历对象时想要key和value一起遍历出来 格式"（value,key）in Object"  还可以加上index索引-->
+		  	<li v-for="(value,key,index) in person">{{index+1}}.{{key}}：{{value}}</li>
+		</ul>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:"#app",
+				data:{
+					message:"Hello World!",	
+					movies:['三毛流浪记','三国之见龙卸甲','误杀','单身男女'],
+					person:{name:'张三',age:'18',gender:'男'}
+				}
+			})
+		</script>
+	</body>
+</html>
