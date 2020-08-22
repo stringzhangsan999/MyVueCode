@@ -1,4 +1,5 @@
 const path=require('path')  /* 这个不是我们定义的是node里面定义的path*/
+const webpack =require('webpack')/* 横幅插件是webpack自带的插件所以我们导入webpack */
 
 module.exports={
 	entry: './src/main.js',
@@ -69,8 +70,10 @@ module.exports={
 										test: /\.vue$/,
 										use:['vue-loader']
 										}
-					 ]
-	     },
+					 ],
+	         
+
+			 },
   resolve: {
 		//解决扩展名，导入时可以省略这些扩展名
 		 extensions: ['.js', '.css', '.vue'],
@@ -80,4 +83,7 @@ module.exports={
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
+	plugins: [
+							 new webpack.BannerPlugin('最终所有权归嘻嘻嘻嘻')
+							 ]
 };
