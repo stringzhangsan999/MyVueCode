@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "vue": "^2.5.21"
+    "vue": "^2.5.21",
+    "webpack-merge": "^5.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -25,8 +26,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-		"dev": "webpack-dev-server --open"
+    "build": "webpack --config ./build/prod.config.js",
+    "dev": "webpack-dev-server --open --config ./build/dev.config.js"
   },
   "author": "",
   "license": "ISC"

@@ -5,7 +5,7 @@ const  uglifyjsWebpackPlugin=require('uglifyjs-webpack-plugin')/* 丑化我们�
 module.exports={
 	entry: './src/main.js',
 	output:{
-		path: path.resolve(__dirname,'dist'),  /*双下划线dirname __dirname 是node里面定义好的变量与dist拼接 这里需要写上绝对路径,我们应该获取动态的绝对路径*/
+		path: path.resolve(__dirname,'../dist'),  /*双下划线dirname __dirname 是node里面定义好的变量与dist拼接 这里需要写上绝对路径,我们应该获取动态的绝对路径*/
 		filename: 'bundle.js',/* 文件名称 */
 		// publicPath: 'dist/',
 	},
@@ -88,12 +88,7 @@ module.exports={
 							 new webpack.BannerPlugin('最终所有权归嘻嘻嘻嘻'),
 							 new htmlWebpackPlugin({
 								 template: 'src/index.html'
-							 }),
-						//	 new uglifyjsWebpackPlugin(),
+							 }), 
 							 ],
-	/* devServer:{
-		contentBase: './dist',
-		inline: true
-		
-	} */
+
 };
